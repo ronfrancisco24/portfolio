@@ -5,17 +5,7 @@ interface TimelineItemProps {
   title: string;
   subtitle?: string;
   description?: string;
-  /**
-   * Optional icon to show in the timeline node.
-   * If not provided, a simple placeholder SVG will be used.
-   */
   icon?: React.ReactNode;
-  /**
-   * Controls which side the content shows on when using a two-column timeline.
-   * - 'left' => content on the left of the center line
-   * - 'right' => content on the right of the center line
-   * - 'center' => content spans full width (stacked)
-   */
   align?: "left" | "right" | "center";
 }
 
@@ -31,24 +21,12 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   title,
   subtitle,
   description = "Description coming soon...",
-  icon,
+
   align = "left",
 }) => {
   const isCenter = align === "center";
-  const leftSide = align === "left";
-  const rightSide = align === "right";
 
-  const defaultIcon = (
-    <svg
-      className="w-5 h-5 text-black"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14h-2v-6h2v6zm0-8h-2V6h2v2z" />
-    </svg>
-  );
+  const rightSide = align === "right";
 
   return (
     <div className="w-full relative">
