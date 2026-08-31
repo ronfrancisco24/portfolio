@@ -17,10 +17,13 @@ function Marginalia() {
 
           <blockquote className="md:col-span-7 md:col-start-6">
             <p className="font-display text-chapter font-normal text-ink italic">
-              &ldquo;Write the thing. Then take half of it away.&rdquo;
+              &ldquo;And so I just kept writing to myself.&rdquo;
             </p>
             <footer className="label mt-6 not-italic">
-              Notes kept while building
+              <span aria-hidden="true" className="mr-2.5 text-clay">
+                &#8213;
+              </span>
+              Kimberly Novosel, <cite>Loved</cite>
             </footer>
           </blockquote>
         </Reveal>
