@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Wordmark from "../components/Wordmark";
 
 const year = new Date().getFullYear();
 
@@ -20,7 +21,7 @@ function Footer() {
             to="/"
             className="font-display text-4xl leading-none tracking-tight text-bark transition-colors duration-200 hover:text-ink sm:text-5xl"
           >
-            aaron
+            <Wordmark />
           </Link>
 
           <nav aria-label="Footer">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Wordmark from "./Wordmark";
 
 const links = [
   { label: "About", to: "/#about" },
@@ -34,7 +35,7 @@ function NavBar() {
           to="/"
           className="font-display text-2xl leading-none tracking-tight text-bark transition-colors duration-200 hover:text-ink"
         >
-          aaron
+          <Wordmark />
         </Link>
 
         <ul className="hidden items-center gap-9 md:flex">
