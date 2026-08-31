@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# aaron — personal site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A writer's-desk portfolio and notes blog. React 19 + Vite + Tailwind v4.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # -> dist/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Writing a note
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Posts are markdown files. There is no CMS, no database, and nothing to register —
+drop a file in `src/content/notes/` and it appears on the site.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Create `src/content/notes/my-post-title.md`. **The filename becomes the URL**
+   (`/notes/my-post-title`), so keep it lowercase and hyphenated.
+2. Start the file with frontmatter, then write the body in plain markdown:
+
+   ```markdown
+   ---
+   title: "On writing code you can read out loud"
+   date: "2026-08-14"
+   excerpt: "The one-line summary shown on the notes index."
+   ---
+
+   Body copy starts here.
+   ```
+
+   Keep the quotes around `date` — unquoted, YAML turns it into a Date object
+   and the sorting breaks.
+3. `git commit && git push`. The host rebuilds and the note is live.
+
+Notes sort newest-first automatically. Reading time is calculated from the word
+count. The three most recent appear in the **Marginalia** section on the home
+page; the full list lives at `/notes`.
+
+Supported in the body: headings, **bold**, *italic*, lists, tables, blockquotes,
+links, and fenced code blocks — all styled by `.prose-note` in `src/index.css`.
+The first paragraph gets a drop cap.
+
+## Layout
+
 ```
+src/
+  content/notes/*.md   the posts
+  content/notes.ts     build-time loader (import.meta.glob)
+  pages/               Home, NotesIndex, NotePage, NotFound
+  sections/            the home-page sections
+  components/          Navbar, Footer, ProjectCard, Reveal
+  index.css            design tokens + prose styles
+```
+
+## Deploying
+
+The site is a single-page app, so the host must rewrite unknown paths to
+`index.html` or a hard refresh on `/notes/<slug>` will 404.
+
+- **Netlify** — handled by `public/_redirects`, already committed.
+- **Vercel** — automatic for Vite projects, nothing to do.
+- **GitHub Pages** — needs a `404.html` copy of `index.html`.
+
+Posts are rendered client-side, so search engines and link previews see an empty
+shell. Fine for a personal blog; if that changes, pre-rendering is the next step.
