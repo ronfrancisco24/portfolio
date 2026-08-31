@@ -17,12 +17,32 @@ function Hero() {
           Pampanga, PH
         </p>
 
-        <h1 className="font-display text-display max-w-5xl font-medium text-ink">
-          I build software the way{" "}
-          <em className="italic text-bark">I&apos;d write a book.</em>
+        {/* The page still needs a heading; the quote carries the visual weight. */}
+        <h1 className="sr-only">
+          Aaron Matthew Francisco — Full-stack Developer
         </h1>
 
-        <div className="mt-12 flex flex-col gap-8 border-t border-clay/40 pt-8 sm:mt-16 sm:flex-row sm:items-baseline sm:justify-between">
+        <blockquote>
+          <p className="font-display text-display font-medium text-balance text-ink">
+            <span aria-hidden="true" className="text-clay">
+              &ldquo;
+            </span>
+            Our life is what our thoughts make it.
+            <span aria-hidden="true" className="text-clay">
+              &rdquo;
+            </span>
+          </p>
+          {/* The rule carries the eye across to the attribution, so the
+              line fills the measure instead of stranding the right side. */}
+          <footer className="label mt-9 flex items-center gap-5 sm:gap-8">
+            <span aria-hidden="true" className="h-px flex-1 bg-clay/70" />
+            <span className="shrink-0">
+              Marcus Aurelius, <cite>Meditations</cite>
+            </span>
+          </footer>
+        </blockquote>
+
+        <div className="mt-16 flex flex-col gap-8 sm:mt-20 sm:flex-row sm:items-baseline sm:justify-between">
           <p className="max-w-xl font-serif text-lg leading-relaxed text-ink/90">
             A Computer Science graduate building mobile and web applications —
             Flutter on the phone, Next.js and Django behind it.
