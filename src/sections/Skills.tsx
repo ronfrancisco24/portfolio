@@ -1,69 +1,70 @@
-import { Code, Zap, Heart, Users } from "lucide-react";
+import Reveal from "../components/Reveal";
+
+const craft = [
+  {
+    numeral: "I",
+    label: "Adaptability",
+    description:
+      "Flutter one month, Django REST the next. I get fluent in an unfamiliar stack quickly, and I'm comfortable in the stretch where I still don't know anything.",
+  },
+  {
+    numeral: "II",
+    label: "Continuous improvement",
+    description:
+      `I'm always looking for ways to improve — whether it's my code, my workflow, or my understanding of a problem. I don't like settling for "it works" when I know it can work better.`,
+  },
+  {
+    numeral: "III",
+    label: "Communication",
+    description:
+      "I write things down. Clear pull requests, short updates, questions asked early rather than late — the unglamorous habits that keep a team moving in one direction.",
+  },
+  {
+    numeral: "IV",
+    label: "Curiosity",
+    description:
+      "I like understanding how things work beyond what I'm immediately asked to do. I ask questions, explore unfamiliar technologies, and enjoy learning something new when a problem takes me somewhere I haven't been before.",
+  },
+];
+
 
 function Skills() {
-  const skills = [
-    {
-      id: "eagerness",
-      label: "Eagerness",
-      description:
-        "I approach new problems with curiosity and speed — I learn quickly and adapt.",
-      icon: <Zap className="w-8 h-8 text-black" />,
-    },
-    {
-      id: "technical",
-      label: "Technical",
-      description:
-        "Strong fundamentals in software development: clean code, system thinking and debugging.",
-      icon: <Code className="w-8 h-8 text-black" />,
-    },
-    {
-      id: "collaboration",
-      label: "Collaboration",
-      description:
-        "I communicate clearly and enjoy working with teams to deliver usable products.",
-      icon: <Users className="w-8 h-8 text-black" />,
-    },
-    {
-      id: "craft",
-      label: "Craft",
-      description:
-        "Attention to detail, care for UX, and polishing things until they feel right.",
-      icon: <Heart className="w-8 h-8 text-black" />,
-    },
-  ];
-
   return (
     <section
-      id="skills"
-      className="max-w-6xl mx-auto px-8 py-20 text-white w-full"
+      id="craft"
+      className="w-full border-b border-clay/40 px-6 py-20 sm:px-10 sm:py-28"
     >
-      <div className="mb-10">
-        <h1 className="text-5xl font-bold mb-3">What I deliver</h1>
-        <p className="text-lg text-white/80 max-w-3xl">
-          I bring a mix of technical skills, creativity, and reliability to help
-          the organization build impactful, efficient, and user-centered
-          solutions.
-        </p>
-      </div>
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="grid gap-8 md:grid-cols-12 md:gap-16">
+          <h2 className="label md:col-span-4">The craft</h2>
+          <p className="max-w-xl font-serif text-2xl leading-snug text-ink md:col-span-7 md:col-start-6 sm:text-[1.75rem]">
+            Four habits I bring to a team, stated plainly.
+          </p>
+        </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {skills.map((s) => (
-          <div
-            key={s.id}
-            className="flex gap-6 p-6 rounded-2xl border border-[#2b2b2b] bg-[#0F0F0F] items-start"
-          >
-            <div className="flex-shrink-0">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-[0_0_18px_rgba(255,255,255,0.12)]">
-                {s.icon}
+        <Reveal className="mt-14 grid gap-x-16 border-t border-clay/40 sm:mt-20 md:grid-cols-2">
+          {craft.map((item) => (
+            <article
+              key={item.numeral}
+              className="border-b border-clay/40 py-9 md:py-11"
+            >
+              <div className="flex gap-6">
+                <span className="label mt-1 w-8 shrink-0 text-clay">
+                  {item.numeral}
+                </span>
+                <div>
+                  <h3 className="font-display text-[1.75rem] leading-tight font-medium tracking-tight text-ink">
+                    {item.label}
+                  </h3>
+                  <p className="mt-3 font-serif leading-relaxed text-ink/90">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </article>
+          ))}
+        </Reveal>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-1">{s.label}</h3>
-              <p className="text-sm text-white/80">{s.description}</p>
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   );
