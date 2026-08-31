@@ -4,7 +4,7 @@ const workingIn = [
   "Flutter",
   "React",
   "Next.js",
-  "Django",
+  "Django REST",
   "TypeScript",
   "Python",
   "Dart",
@@ -13,6 +13,8 @@ const workingIn = [
   "PostgreSQL",
   "Tailwind CSS",
 ];
+
+const mark = "underline decoration-clay decoration-1 underline-offset-4";
 
 function About() {
   return (
@@ -29,34 +31,27 @@ function About() {
         <div className="order-2 space-y-6 font-mono text-[0.9375rem] leading-[1.85] text-ink md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1">
           <p>
             Aaron is a Computer Science graduate of{" "}
-            <span className="underline decoration-clay decoration-1 underline-offset-4">
-              Holy Angel University
-            </span>{" "}
-            who builds mobile and web applications — Flutter on the phone,{" "}
-            <span className="underline decoration-clay decoration-1 underline-offset-4">
-              Next.js
-            </span>{" "}
-            and{" "}
-            <span className="underline decoration-clay decoration-1 underline-offset-4">
-              Django REST Framework
-            </span>{" "}
-            behind it, Firebase or Supabase underneath.
+            <span className={mark}>Holy Angel University</span>. He builds
+            mobile and web applications — <span className={mark}>Flutter</span>{" "}
+            on the phone, <span className={mark}>Next.js</span> and{" "}
+            <span className={mark}>Django</span> behind it, Firebase or Supabase
+            underneath.
           </p>
 
           <p>
             He spent four months as a full-stack developer at Geopro Global
-            Solutions, building analytical dashboards and the REST endpoints
-            that fed them, and two years leading mobile development for Google
-            Developer Groups at Holy Angel — mostly teaching Flutter to people
-            who had never shipped an app before.
+            Solutions, where he built analytical dashboards and the REST
+            endpoints that fed them. He also worked as a freelance full-stack
+            developer on <span className={mark}>Signal Check</span>, a traffic
+            simulation app made with Next.js and Supabase that keeps working
+            when the connection drops.
           </p>
 
           <p>
-            The work he likes best is the unglamorous middle: taking a real
-            requirement, finding the shape of the data underneath it, and
-            trimming the interface until nothing unnecessary is left. He treats
-            a codebase like a manuscript — drafted fast, then edited slowly,
-            until every line earns its place.
+            What he enjoys most is learning. He would rather take on something
+            new than repeat what he already knows well. Whatever he is given —
+            a small fix or a feature nobody has built yet — he wants to do it
+            as well as it can be done.
           </p>
         </div>
 
