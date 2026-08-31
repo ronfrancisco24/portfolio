@@ -1,22 +1,41 @@
-import About from "./sections/About";
-import Projects from "./sections/Projects";
-import Skills from "./sections/Skills";
-import Footer from "./sections/Footer";
+import { Suspense, lazy } from "react";
+import { Route, Routes } from "react-router";
 import Navbar from "./components/Navbar";
-import Timeline from "./sections/Timeline";
-import Contact from "./sections/Contact";
+import ScrollManager from "./components/ScrollManager";
+import Footer from "./sections/Footer";
+import Home from "./pages/Home";
+import Works from "./pages/Works";
+import NotesIndex from "./pages/NotesIndex";
+import NotFound from "./pages/NotFound";
+
+// react-markdown only ships to readers who actually open a note.
+const NotePage = lazy(() => import("./pages/NotePage"));
 
 function App() {
   return (
-    <div className="min-h-screen font-inter bg-[#1A1A1A] relative">
+    <div className="relative min-h-screen bg-paper">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-6 focus:left-6 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:tracking-[0.16em] focus:text-paper focus:uppercase"
+      >
+        Skip to content
+      </a>
+
+      <ScrollManager />
       <Navbar />
-      <main className="max-w-6xl mx-auto px-8 pt-32 flex flex-col items-center gap-10">
-        <About />
-        <Skills />
-        <Timeline />
-        <Projects />
-        <Contact />
+
+      <main id="main" className="relative z-1">
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/works" element={<Works />} />
+            <Route path="/notes" element={<NotesIndex />} />
+            <Route path="/notes/:slug" element={<NotePage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
+
       <Footer />
     </div>
   );
